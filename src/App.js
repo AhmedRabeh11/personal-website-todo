@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from 'react';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TodoWrapper from "./pages/TodoWrapper";
+import Home from "./pages/Home";
+import NoPage from "./pages/NoPage";
+import './index.css';
+import Page from "./pages/Page";
+import Dropdown from "./components/Dropdown";
+
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+  };
+  return ( /*
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Page />}>
+          <Route path = "" element = {<Home/>}/>
+          <Route path="todo" element={<TodoWrapper />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+*/
+    <div className="app">
+      <h1>React Dropdown Example</h1>
+      <Dropdown
+        options={['Option 1', 'Option 2', 'Option 3']}
+        onSelect={handleSelect}
+      />
+      <p>Selected Option: {selectedOption}</p>
     </div>
   );
 }
